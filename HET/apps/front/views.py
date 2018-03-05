@@ -61,9 +61,9 @@ def index():
         posts = query_obj.slice(start,end)
         query_obj.count()
 
-
-    print('帖子总数是%s'%total)
-    print('当前是第：%s页'%page)
+    #
+    # print('帖子总数是%s'%total)
+    # print('当前是第：%s页'%page)
     count = 0
     read_counts = {}
     answer_counts = {}
