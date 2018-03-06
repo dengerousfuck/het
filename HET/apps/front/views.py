@@ -6,7 +6,6 @@ from flask import (Blueprint,
                    url_for,
                     g,
                     abort
-
                    )
 from .forms import SignupForm,SigninForm,AddPostForm,AddCommentForm,AddProjectForm
 from utils import restful,safeutils
