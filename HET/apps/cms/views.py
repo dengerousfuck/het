@@ -116,8 +116,12 @@ def comments():
 @permission_required(CMSPersmisson.BOARDER)
 def boards():
     board_models = BoardModel.query.all()
+    posts = {}
+    for board in board_models:
+        posts[board.id] = len(PostModel.query.filter(PostModel.board_id == board.id).all())
     context = {
-        'boards':board_models
+        'boards':board_models,
+        'posts':posts
     }
     return render_template('cms/cms_boards.html',**context)
 

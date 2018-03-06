@@ -20,7 +20,7 @@
         <thead>
             <tr>
                 <th>板块名称</th>
-                <th>拥有帖子数量</th>
+                <th>拥有文章数量</th>
                 <th>创建时间</th>
                 <th>操作</th>
             </tr>
@@ -29,7 +29,7 @@
             {% for board in boards %}
                 <tr data-name="{{ board.name }}" data-id="{{ board.id }}">
                     <td>{{ board.name }}</td>
-                    <td>0</td>
+                    <td>{{ posts[board.id] }}</td>
                     <td>{{ board.create_time }}</td>
                     <td>
                         <button class="btn btn-default btn-xs edit-board-btn">编辑</button>

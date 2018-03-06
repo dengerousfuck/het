@@ -61,9 +61,9 @@ HET接口测试
                 {% endif %}
 
                 {% if current_sort == 2 %}
-                    <li class="active"><a href="{{ url_for('front.index',st=2,bd=current_board) }}">精华帖子</a></li>
+                    <li class="active"><a href="{{ url_for('front.index',st=2,bd=current_board) }}">精华文章</a></li>
                 {% else %}
-                    <li ><a href="{{ url_for('front.index',st=2,bd=current_board) }}">精华帖子</a></li>
+                    <li ><a href="{{ url_for('front.index',st=2,bd=current_board) }}">精华文章</a></li>
                 {% endif %}
 
                 {% if current_sort == 3 %}
@@ -77,12 +77,12 @@ HET接口测试
                 {% else %}
                     <li ><a href="{{ url_for('front.index',st=4,bd=current_board) }}">评论最多</a></li>
                 {% endif %}
-
-                {% if current_sort == 5 %}
-                    <li class="active"><a href="{{ url_for('front.index',st=5,bd=current_board) }}">项目接口</a></li>
-                {% else %}
-                    <li ><a href="{{ url_for('front.index',st=5,bd=current_board) }}">项目接口</a></li>
-                {% endif %}
+{##}
+{#                {% if current_sort == 5 %}#}
+{#                    <li class="active"><a href="{{ url_for('front.index',st=5,bd=current_board) }}">项目接口</a></li>#}
+{#                {% else %}#}
+{#                    <li ><a href="{{ url_for('front.index',st=5,bd=current_board) }}">项目接口</a></li>#}
+{#                {% endif %}#}
 
             </ul>
             <div class="post-list-group">
@@ -121,12 +121,17 @@ HET接口测试
 
     <div class="sm-container">
         <div style="padding-bottom:10px;">
-            <a href="{{ url_for('front.apost') }}" class="btn btn-warning btn-block">发布帖子</a>
+            <a href="{{ url_for('front.apost') }}" class="btn btn-warning btn-block">分享文章</a>
         </div>
 
         <div style="padding-bottom:10px;">
             <button  class="btn btn-warning btn-block" data-toggle="modal" data-target="#project-dialog">项目接口录入</button>
-        </div>·
+        </div>
+
+        <div style="padding-bottom:10px;">
+            <a href="#" class="btn btn-warning btn-block" target="_blank">查看项目接口</a>
+        </div>
+
         <div class="list-group">
             {% if current_board %}
                 <a href="/" class="list-group-item">所有板块</a>

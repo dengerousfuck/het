@@ -12,7 +12,7 @@ from utils import restful,safeutils
 from .models import FrontUser,InputInterface
 from ..models import BannerModel,BoardModel,PostModel,CommentModel,HighlightPostModel,ReadcountModel
 from exts import db
-import config
+import config,time
 from .decorators import login_required
 from flask_paginate import Pagination,get_page_parameter
 from sqlalchemy.sql import func
@@ -131,11 +131,12 @@ def add_project():
         domain = form.domain.data
         have_headers = form.have_headers.data
         expected_code = form.expected_code.data
+        timestamp = str(int(time.time())*1000)[:13]
 
         newinterface = InputInterface(app_id=app_id,name=name,interface_name=interface_name,interface_url=interface_url,
                                     parameter_key=parameter_key,parameter_value=parameter_value,typed=typed,methods=methods,
                                     sign=sign,domain=domain,have_headers=have_headers,expected_code=expected_code,
-                                      timestamp='1211111111111')
+                                      timestamp=timestamp)
         newinterface.author_id = g.front_user.id
         db.session.add(newinterface)
         db.session.commit()
