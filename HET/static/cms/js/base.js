@@ -61,5 +61,8 @@ $(function () {
         var bannerManageLi = $('.banner-manage');
         bannerManageLi.addClass('unfold').siblings().removeClass('unfold');
 
+    }else if(url.indexOf("cinterfaces")>=0){
+        var cinterfacesManageLi = $('.cinterfaces-manage');
+        cinterfacesManageLi.addClass('unfold').siblings().removeClass('unfold');
     }
 });

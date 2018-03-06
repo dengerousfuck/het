@@ -32,10 +32,27 @@ $(function () {
     })
 });
 
-// $(function () {
-//     $(".delete-btn").click(function (event) {
-//         event.preventDefault();
-//
-//
-//     })
-// });
+
+$(function () {
+    $(".delete-btn").click(function () {
+        var self = $(this);
+        var tr = self.parent().parent();
+        var post_id = tr.attr('data-id');
+        hetajax.post({
+            'url':'/cms/dpost/',
+            'data':{
+                'post_id':post_id
+            },
+            'success':function (data) {
+                if(data['code'] == 200){
+                    hetalert.alertSuccess('操作成功！');
+                    setTimeout(function () {
+                        window.location.reload();
+                    },500);
+                }else{
+                    hetalert.alertInfo(data['message']);
+                }
+            }
+        });
+    })
+});

@@ -104,6 +104,25 @@ def uhpost():
     return restful.success()
 
 
+@bp.route('/dpost/',methods=['POST'])
+@login_required
+@permission_required(CMSPersmisson.POSTER)
+def dpost():
+    post_id = request.form.get('post_id')
+    print(post_id)
+    if not post_id:
+        return restful.params_error(message='请传入帖子id')
+    post = PostModel.query.get(post_id)
+    print(post)
+    print(post.board_id)
+    print(post.id)
+    if not post:
+        return restful.params_error('没有这篇帖子！')
+    db.session.delete(post)
+    db.session.commit()
+    return restful.success()
+
+
 @bp.route('/comments/')
 @login_required
 @permission_required(CMSPersmisson.COMMENTER)

@@ -79,9 +79,9 @@
 
               {% if cms_user.is_developer%}
 
-                  <li class="cmsrole-manage"><a href="{{ url_for('cms.cinterfaces') }}">het接口管理</a></li>
+                  <li class="cinterfaces-manage"><a href="{{ url_for('cms.cinterfaces') }}">het接口管理</a></li>
 
-                <li class="cmsrole-manage"><a href="{{ url_for('cms.croles') }}">CMS组管理</a></li>
+{#                <li class="cmsrole-manage"><a href="{{ url_for('cms.croles') }}">CMS组管理</a></li>#}
               {% endif %}
 
             </ul>
