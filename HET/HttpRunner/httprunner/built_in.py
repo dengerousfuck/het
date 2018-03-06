@@ -8,8 +8,8 @@ import re
 import string
 import time
 
-from httprunner.exception import ParamsError
-from httprunner.utils import string_type
+from ..httprunner.exception import ParamsError
+from ..httprunner.utils import string_type
 
 
 def gen_random_string(str_len):

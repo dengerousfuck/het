@@ -10,7 +10,7 @@ import string
 import types
 from collections import OrderedDict
 
-from httprunner import exception
+from ..httprunner import exception
 from requests.structures import CaseInsensitiveDict
 
 try:

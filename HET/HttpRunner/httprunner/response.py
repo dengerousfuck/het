@@ -2,7 +2,7 @@ import logging
 import re
 from collections import OrderedDict
 
-from httprunner import exception, utils, testcase
+from ..httprunner import exception, utils, testcase
 from requests.structures import CaseInsensitiveDict
 
 text_extractor_regexp_compile = re.compile(r".*\(.*\).*")

@@ -5,10 +5,10 @@ import os
 import sys
 from collections import OrderedDict
 
-from httprunner import __version__ as ate_version
-from httprunner import exception
-from httprunner.task import TaskSuite
-from httprunner.utils import create_scaffold, string_type
+from ..httprunner import __version__ as ate_version
+from ..httprunner import exception
+from ..httprunner.task import TaskSuite
+from ..httprunner.utils import create_scaffold, string_type
 from pyunitreport import __version__ as pyu_version
 from pyunitreport import HTMLTestRunner
 

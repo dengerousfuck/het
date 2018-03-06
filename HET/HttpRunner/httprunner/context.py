@@ -4,7 +4,7 @@ import re
 import sys
 from collections import OrderedDict
 
-from httprunner import exception, testcase, utils
+from ..httprunner import exception, testcase, utils
 
 
 class Context(object):
@@ -60,7 +60,7 @@ class Context(object):
     def import_requires(self, modules):
         """ import required modules dynamically
         """
-        for module_name in modules:
+        # for module_name in modules:
         for module_name in modules:
             globals()[module_name] = utils.get_imported_module(module_name)
 
