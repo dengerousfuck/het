@@ -39,6 +39,7 @@ def sms_captcha():
         #     return restful.params_error(message='短信验证码发送失败！')
         #     # hetcache.set(telephone, captcha)
         #     # return restful.success()
+        hetcache.set(telephone, captcha)
         send_sms_captcha(telephone,captcha)
         return restful.success()
     else:

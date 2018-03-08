@@ -211,7 +211,6 @@ class SignupView(views.MethodView):
             return restful.success()
 
         else:
-
             return restful.params_error(message=form.get_error())
 
 class SigninView(views.MethodView):

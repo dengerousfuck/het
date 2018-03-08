@@ -60,8 +60,7 @@ class Captcha(object):
             'verdana.ttf'
         ]
         font = random.choice(fonts)
-        return 'utils/captcha/'+'123456.ttf'#font
-
+        return 'utils/captcha/'+'Cookie-Regular.ttf'#font
 
     # 用来随机生成一个字符串(包括英文和数字)
     @classmethod
