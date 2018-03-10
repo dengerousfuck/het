@@ -69,6 +69,7 @@ $(function () {
                 dialog.modal("hide");
                 if(data['code']==200){
                     //重新加载当前页面
+                    hetalert.alertInfoToast('接口录入成功！')
                     window.location.reload();
                 }else{
                     hetalert.alertInfo(data['message']);
