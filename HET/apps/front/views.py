@@ -6,9 +6,10 @@ from flask import (Blueprint,
                    url_for,
                     g,
                     abort
+
                    )
-from .forms import SignupForm,SigninForm,AddPostForm,AddCommentForm,AddProjectForm
-from utils import restful,safeutils
+from .forms import SignupForm,SigninForm,AddPostForm,AddCommentForm,AddProjectForm,ForgotpwdForm,UpdatepwdForm
+from utils import restful,safeutils,hetcache
 from .models import FrontUser,InputInterface
 from ..models import BannerModel,BoardModel,PostModel,CommentModel,HighlightPostModel,ReadcountModel
 from exts import db
@@ -16,6 +17,7 @@ import config,time
 from .decorators import login_required
 from flask_paginate import Pagination,get_page_parameter
 from sqlalchemy.sql import func
+import re
 
 bp = Blueprint('front',__name__)
 
@@ -191,6 +193,41 @@ def apost():
             return restful.params_error(message=form.get_error())
 
 
+class UpdatepwdView(views.MethodView):
+    def get(self):
+        return render_template('front/front_updatepwd.html')
+
+    def post(self):
+        form = UpdatepwdForm(request.form)
+        if form.validate():
+            password = form.password1.data
+            telephone = updatepwd_telephone
+            user = FrontUser.query.filter_by(telephone=telephone).first()
+            user.password = password
+            db.session.commit()
+            return restful.success()
+        else:
+            return restful.params_error(message=form.get_error())
+
+
+class ForgotpwdView(views.MethodView):
+    def get(self):
+        return render_template('front/front_forgotpwd.html')
+
+    def post(self):
+        form = ForgotpwdForm(request.form)
+        if form.validate():
+            telephone = form.telephone.data
+            query_telephone = FrontUser.query.filter_by(telephone=telephone).first()
+            if not query_telephone:
+                return restful.params_error(message='此号码未注册，请确认后在输入！')
+            else:
+                global updatepwd_telephone
+                updatepwd_telephone = telephone
+                return restful.success()
+        return restful.params_error(message=form.get_error())
+
+
 class SignupView(views.MethodView):
     def get(self):
         return_to = request.referrer
@@ -205,18 +242,27 @@ class SignupView(views.MethodView):
             telephone = form.telephone.data
             username = form.username.data
             password = form.password1.data
-            user = FrontUser(telephone=telephone,username=username,password=password)
-            db.session.add(user)
-            db.session.commit()
-            return restful.success()
+            query_user = FrontUser.query.filter_by(telephone=telephone).first()
+            if not query_user:
+                user = FrontUser(telephone=telephone,username=username,password=password)
+                db.session.add(user)
+                db.session.commit()
+                return restful.success()
+            else:
+                return restful.params_error(message='手机号码已注册，请直接登录！')
 
         else:
             return restful.params_error(message=form.get_error())
 
+
 class SigninView(views.MethodView):
     def get(self):
-        return_to = request.referrer
-        if return_to and return_to != request.url and return_to != url_for("front.signup") and safeutils.is_safe_url(return_to):
+        return_to = request.referrer  #返回上一个页面
+
+        if return_to and return_to != request.url \
+                and re.search(url_for('front.signup'), return_to) is None\
+                and re.search(url_for('front.updatepwd'), return_to) is None\
+                and safeutils.is_safe_url(return_to) :
 
             return render_template('front/front_signin.html',return_to=return_to)
         else:
@@ -243,3 +289,5 @@ class SigninView(views.MethodView):
 
 bp.add_url_rule('/signup/',view_func=SignupView.as_view('signup'))
 bp.add_url_rule('/signin/',view_func=SigninView.as_view('signin'))
+bp.add_url_rule('/forgotpwd/',view_func=ForgotpwdView.as_view('forgotpwd'))
+bp.add_url_rule('/updatepwd/',view_func=UpdatepwdView.as_view('updatepwd'))

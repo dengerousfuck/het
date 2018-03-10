@@ -28,9 +28,8 @@ $(function () {
                         window.location = '/';
                     }
 
-
                 }else{
-                    hetalert.alertInfo(data['message'])
+                    hetalert.alertInfo(data['message']);
                 }
                 
             }

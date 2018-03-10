@@ -36,6 +36,12 @@
                             <img src="{{ comment.author.avator or static('common/images/logo.png') }}" alt="">
                             <div class="comment-content">
                                 <p class="author-info">
+{#                                    {% set username = g.front_user.username %}#}
+{#                                     {% if username == {{ comment.author.username }} %}#}
+{#                                        <span>作者</span>#}
+{#                                     {% elif %}#}
+{#                                        <span>username</span>#}
+{#                                     {% endif %}#}
                                     <span>{{ comment.author.username }}</span>
                                     <span>{{ comment.create_time }}</span>
                                 </p>

@@ -2,7 +2,7 @@ from flask import Blueprint,views,render_template,request,session,redirect,url_f
 from .forms import LoginForm,ResetpwdForm,ResetEmailForm,AddBannerForm,UpdateBannerForm,AddBoardForm,UpdateBoardForm
 from .models import CMSUser,CMSPersmisson
 from .decorators import login_required,permission_required
-from ..models import BannerModel,BoardModel,PostModel,HighlightPostModel
+from ..models import BannerModel,BoardModel,PostModel,HighlightPostModel,ReadcountModel,CommentModel
 import config
 from exts import db,mail
 from utils import restful,hetcache
@@ -109,15 +109,18 @@ def uhpost():
 @permission_required(CMSPersmisson.POSTER)
 def dpost():
     post_id = request.form.get('post_id')
-    print(post_id)
     if not post_id:
         return restful.params_error(message='请传入帖子id')
-    post = PostModel.query.get(post_id)
-    print(post)
-    print(post.board_id)
-    print(post.id)
+    post = PostModel.query.filter_by(id=post_id).first()
     if not post:
         return restful.params_error('没有这篇帖子！')
+    read_posts = ReadcountModel.query.filter_by(post_id=post_id).first()
+    comment_posts = CommentModel.query.filter_by(post_id=post_id).all()
+    if read_posts:
+        db.session.delete(read_posts)
+    if comment_posts:
+        for comment_post in comment_posts:
+            db.session.delete(comment_post)
     db.session.delete(post)
     db.session.commit()
     return restful.success()
