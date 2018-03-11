@@ -14,7 +14,7 @@ class Captcha(object):
     # 验证码图片的宽度和高度
     size = (100,30)
     # 验证码字体大小
-    fontsize = 45
+    fontsize = 40
     # 加入干扰线的条数
     line_number = 2
 
