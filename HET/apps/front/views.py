@@ -11,7 +11,7 @@ from flask import (Blueprint,
                    )
 from .forms import SignupForm,SigninForm,AddPostForm,AddCommentForm,AddProjectForm,ForgotpwdForm,UpdatepwdForm
 from utils import restful,safeutils,hetcache
-from .models import FrontUser,InputInterface
+from .models import FrontUser,InputInterface,UploadFileForm
 from ..models import BannerModel,BoardModel,PostModel,CommentModel,HighlightPostModel,ReadcountModel
 from exts import db
 import config,time
@@ -21,8 +21,9 @@ from sqlalchemy.sql import func
 import re
 import os
 from werkzeug.utils import secure_filename
+from utils.het_fiddler.main import main
 
-UPLOAD_PATH = os.path.join(os.path.dirname(__file__),'images')
+UPLOAD_PATH = os.path.join(os.path.abspath('utils'),'het_fiddler/datas/saz/')
 bp = Blueprint('front',__name__)
 
 
@@ -204,12 +205,38 @@ def upload():
     if request.method == 'GET':
         return render_template('front/front_upload.html')
     else:
-        desc = request.form.get('desc')
+        desc = request.form.get('desc','这个人很懒，什么都没有留下！')
         avator = request.files.get('avator')
         filename = secure_filename(avator.filename)
+        timestamp = str(int(time.time())*1000)[:13]
+        filename = timestamp + '_' + filename
         avator.save(os.path.join(UPLOAD_PATH,filename))
-
+        # file_url = os.path.dirname(UPLOAD_PATH+'/%s'%filename)
+        exists_file = UploadFileForm.query.filter_by(author_id=g.front_user.id).first()
+        if exists_file:
+            exists_file.file_url=UPLOAD_PATH
+            exists_file.file_name = filename
+        else:
+            _upload = UploadFileForm(desc=desc,file_url=UPLOAD_PATH,file_name=filename)
+            _upload.author = g.front_user
+            db.session.add(_upload)
+        db.session.commit()
         return restful.success(message='文件上传成功！')
+
+@bp.route('/excute/',methods=['GET','POST'])
+@login_required
+def excute():
+    if request.method == 'GET':
+        path = UploadFileForm.query.filter_by(author_id=g.front_user.id).first().file_name
+        return render_template('front/front_excute.html',path=path)
+    else:
+        find_obj = UploadFileForm.query.filter_by(author_id=g.front_user.id).first()
+        case_path = find_obj.file_url
+        case_name = find_obj.file_name
+        main()
+        return restful.success()
+
+
 
 
 @bp.route('/images/<filename>/')

@@ -3,11 +3,11 @@
 {% from 'common/_macros.html' import static %}
 
 {% block title %}
-文件提交
+文件执行
 {% endblock %}
 
 {% block head %}
-    <script src="{{ static('front/js/front_upload.js') }}"></script>
+    <script src="{{ static('front/js/front_excute.js') }}"></script>
 {% endblock %}
 
 {% block h2_block %}
@@ -22,18 +22,14 @@
                     <tbody>
                         <tr>
                             <td>saz文件</td>
-                            <td><input type="file" style="width:300px;" name="avator"></td>
-                        </tr>
-                        <tr>
-                            <td>描述：</td>
-                            <td><input type="text" style="width:300px;" class="form-control" name="desc" placeholder="简单描述"></td>
+                            <td><input type="text" style="width:300px;" name="avator" value="{{ path }}"></td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>
                                 <div class="form-group">
-                                   <button class="btn btn-warning btn-block" id="upload">
-                                       立即上传文件
+                                   <button class="btn btn-warning btn-block" id="excute-btn">
+                                       立即执行
                                    </button>
 
                                 </div>
@@ -47,4 +43,3 @@
    </div>
 
 {% endblock %}
-

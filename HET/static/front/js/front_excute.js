@@ -1,18 +1,21 @@
+/**
+ * Created by denger on 2018/3/14.
+ */
 $(function () {
-    $("#upload").click(function (event) {
+    $("#excute-btn").click(function (event) {
         event.preventDefault();
         var fd = new FormData($('form')[0]);
 
         hetajax.post({
-            'url':'/upload/',
+            'url':'/excute/',
             'types':'POST',
             'processData':false,
             'contentType':false,
             'data':fd,
             'success':function (data) {
                 if(data['code'] == 200){
-                    hetalert.alertInfoToast('文件上传成功！');
-                    window.location = '/excute/';
+                    hetalert.alertInfo('文件上传成功！');
+                    window.location = '/';
                 }else{
                     hetalert.alertInfo(data['message']);
                 }

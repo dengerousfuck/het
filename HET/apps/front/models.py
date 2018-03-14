@@ -68,4 +68,13 @@ class InputInterface(db.Model):
     author = db.relationship('FrontUser',backref='interfaces')
 
 
+class UploadFileForm(db.Model):
+    __tablename__ = 'uploadfile'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    desc = db.Column(db.String(100))
+    file_url = db.Column(db.String(500))
+    file_name = db.Column(db.String(100),nullable=False)
 
+    author_id = db.Column(db.String(100),db.ForeignKey('front_user.id'),nullable=False)
+
+    author = db.relationship('FrontUser',backref='uploadfiles')
