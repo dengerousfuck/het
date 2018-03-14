@@ -210,8 +210,7 @@ def upload():
         filename = secure_filename(avator.filename)
         timestamp = str(int(time.time())*1000)[:13]
         filename = timestamp + '_' + filename
-        avator.save(os.path.join(UPLOAD_PATH,filename))
-        # file_url = os.path.dirname(UPLOAD_PATH+'/%s'%filename)
+        avator.save(os.path.join(UPLOAD_PATH, filename))
         exists_file = UploadFileForm.query.filter_by(author_id=g.front_user.id).first()
         if exists_file:
             exists_file.file_url=UPLOAD_PATH
@@ -233,6 +232,7 @@ def excute():
         find_obj = UploadFileForm.query.filter_by(author_id=g.front_user.id).first()
         case_path = find_obj.file_url
         case_name = find_obj.file_name
+
         main()
         return restful.success()
 
