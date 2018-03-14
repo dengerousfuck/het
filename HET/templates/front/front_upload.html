@@ -1,0 +1,79 @@
+
+{% extends 'front/front_signbase.html' %}
+{% from 'common/_macros.html' import static %}
+
+{% block title %}
+文件提交
+{% endblock %}
+
+{% block head %}
+    <script src="{{ static('front/js/front_upload.js') }}"></script>
+{% endblock %}
+
+{% block h2_block %}
+{{ self.title() }}
+{% endblock %}
+
+
+{#{% block signbox %}#}
+{#<form action="" method="post" enctype="multipart/form-data">#}
+{#    <table>#}
+{#        <tbody>#}
+{#            <tr>#}
+{#                <td>saz文件</td>#}
+{#                <td><input type="file" style="width:300px;" name="avator"></td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <td>描述：</td>#}
+{#                <td><input type="text" style="width:300px;" name="desc" placeholder="简单描述"></td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <td></td>#}
+{#                <td>#}
+{##}
+{#                       <button id="upload">#}
+{#                           立即上传文件#}
+{#                       </button>#}
+{##}
+{##}
+{#                </td>#}
+{#            </tr>#}
+{#        </tbody>#}
+{#    </table>#}
+{#</form>#}
+{#{% endblock %}#}
+
+{% block signbox %}
+   <div class="form-group">
+       <div class="input-group">
+           <form action="" method="post" enctype="multipart/form-data">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>saz文件</td>
+                            <td><input type="file" style="width:300px;" name="avator"></td>
+                        </tr>
+                        <tr>
+                            <td>描述：</td>
+                            <td><input type="text" style="width:300px;" class="form-control" name="desc" placeholder="简单描述"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="form-group">
+                                   <button class="btn btn-warning btn-block" id="upload">
+                                       立即上传文件
+                                   </button>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+
+       </div>
+   </div>
+
+{% endblock %}
+

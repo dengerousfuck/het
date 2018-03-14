@@ -5,7 +5,8 @@ from flask import (Blueprint,
                    session,
                    url_for,
                     g,
-                    abort
+                    abort,
+                    send_from_directory
 
                    )
 from .forms import SignupForm,SigninForm,AddPostForm,AddCommentForm,AddProjectForm,ForgotpwdForm,UpdatepwdForm
@@ -18,7 +19,10 @@ from .decorators import login_required
 from flask_paginate import Pagination,get_page_parameter
 from sqlalchemy.sql import func
 import re
+import os
+from werkzeug.utils import secure_filename
 
+UPLOAD_PATH = os.path.join(os.path.dirname(__file__),'images')
 bp = Blueprint('front',__name__)
 
 
@@ -191,6 +195,28 @@ def apost():
             return restful.success()
         else:
             return restful.params_error(message=form.get_error())
+
+
+
+@bp.route('/upload/',methods=['GET','POST'])
+@login_required
+def upload():
+    if request.method == 'GET':
+        return render_template('front/front_upload.html')
+    else:
+        desc = request.form.get('desc')
+        avator = request.files.get('avator')
+        filename = secure_filename(avator.filename)
+        avator.save(os.path.join(UPLOAD_PATH,filename))
+
+        return restful.success(message='文件上传成功！')
+
+
+@bp.route('/images/<filename>/')
+@login_required
+def get_image(filename):
+    return send_from_directory(UPLOAD_PATH,filename)
+
 
 
 class UpdatepwdView(views.MethodView):

@@ -15,6 +15,7 @@ var hetajax = {
 	},
 	'post':function(args) {
 		args['method'] = 'post';
+		// args['headers']['Content-Type'] = "multipart/form-data";
 		this.ajax(args);
 	},
 	'ajax':function(args) {

@@ -1,7 +1,7 @@
 import os
 from PIL import Image,ImageDraw
 
-DEBUG = False
+DEBUG = True
 SECRET_KEY = os.urandom(24)
 
 
