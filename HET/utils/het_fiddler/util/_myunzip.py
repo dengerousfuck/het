@@ -22,5 +22,6 @@ def unzip(srcdir, dstdir,case_name):
     shutil.copytree(srcdir, temp)
     # files = [os.path.join(temp,eachfile) for eachfile in os.listdir(temp)]
     files = [os.path.join(temp,case_name)]
+    print(files)
     list(map(_newunzip,files))
     shutil.rmtree(temp)

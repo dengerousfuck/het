@@ -7,7 +7,7 @@ APPSECRET = "bf1f3ce24b304af3ab7971aaec318135"
 HEADERS = {"Content-type": "application/x-www-form-urlencoded", 'Accept': '*/*'}
 
 
-RESULTDIR = os.path.join(os.getcwd(),'utils/het_fiddler/datas/result/result.txt')
+
 def addcase(appid, except_code, url_type, http_type, host, url_name, url_remark, case_name, body):
     method = "POST"
     url = "{_host}/task/case/add".format(_host=HOST)
@@ -38,6 +38,7 @@ def addcase(appid, except_code, url_type, http_type, host, url_name, url_remark,
 
 
 def addcase_main():
+    RESULTDIR = os.path.join(os.getcwd(), 'utils/het_fiddler/datas/result/result.txt')
     with open(RESULTDIR, "r", encoding='UTF-8') as f:
         url = {}
         for eachline in f:
@@ -45,7 +46,10 @@ def addcase_main():
              forms, isurl, isparams, code, message, rspbody) = eachline.strip().split("                    ")
             for k, v in json.loads(rspbody).items():
                 if isinstance(v, dict):
-                    except_code = v.popitem()[0]
+                    try:
+                        except_code = v.popitem()[0]
+                    except:
+                        except_code = '"code":0'
                 else:
                     except_code = '"code":0'
             appid = json.loads(forms).get('appId', None)

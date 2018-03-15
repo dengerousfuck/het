@@ -23,7 +23,8 @@ import os
 from werkzeug.utils import secure_filename
 from utils.het_fiddler.main import main
 
-UPLOAD_PATH = os.path.join(os.path.abspath('utils'),'het_fiddler/datas/saz/')
+
+
 bp = Blueprint('front',__name__)
 
 
@@ -210,6 +211,7 @@ def upload():
         filename = secure_filename(avator.filename)
         timestamp = str(int(time.time())*1000)[:13]
         filename = timestamp + '_' + filename
+        UPLOAD_PATH = os.path.join(os.getcwd(), 'utils/het_fiddler/datas/saz/')
         avator.save(os.path.join(UPLOAD_PATH, filename))
         exists_file = UploadFileForm.query.filter_by(author_id=g.front_user.id).first()
         if exists_file:
@@ -230,10 +232,7 @@ def excute():
         return render_template('front/front_excute.html',path=path)
     else:
         find_obj = UploadFileForm.query.filter_by(author_id=g.front_user.id).first()
-        case_path = find_obj.file_url
         case_name = find_obj.file_name
-        print(case_path)
-        print(case_name)
         main(case_name)
         return restful.success()
 
