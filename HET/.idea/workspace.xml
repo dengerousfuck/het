@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9026371f-18e3-4136-98f0-c6d2827dc926" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/front/views.py" afterPath="$PROJECT_DIR$/apps/front/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/het_fiddler/main.py" afterPath="$PROJECT_DIR$/utils/het_fiddler/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/het_fiddler/util/_myrequests.py" afterPath="$PROJECT_DIR$/utils/het_fiddler/util/_myrequests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/het_fiddler/util/_myunzip.py" afterPath="$PROJECT_DIR$/utils/het_fiddler/util/_myunzip.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.py" afterPath="$PROJECT_DIR$/config.py" />
     </list>
     <ignored path="mytest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,13 +48,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_find.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_find.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/het_fiddler/util/_find.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="162">
               <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
               <folding>
                 <element signature="e#15#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -141,18 +150,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addcase.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/het_fiddler/addcase.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="54" column="25" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -193,7 +190,6 @@
         <option value="$PROJECT_DIR$/het/wsgi.py" />
         <option value="$PROJECT_DIR$/utils/captcha/__init__.py" />
         <option value="$PROJECT_DIR$/templates/front/front_index.html" />
-        <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/static/common/hetajax.js" />
         <option value="$PROJECT_DIR$/apps/front/newauto/newauto/auto/addcase.py" />
         <option value="$PROJECT_DIR$/apps/front/newauto/newauto/auto/util/_read.py" />
@@ -228,6 +224,7 @@
         <option value="$PROJECT_DIR$/utils/het_fiddler/util/_myrequests.py" />
         <option value="$PROJECT_DIR$/utils/het_fiddler/main.py" />
         <option value="$PROJECT_DIR$/utils/het_fiddler/util/_myunzip.py" />
+        <option value="$PROJECT_DIR$/config.py" />
       </list>
     </option>
   </component>
@@ -906,14 +903,21 @@
       <option name="project" value="LOCAL" />
       <updated>1521031533920</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="update-flaskweb-20180315">
+      <created>1521079820206</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1521079820206</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="817" extended-state="6" />
-    <editor active="false" />
+    <frame x="0" y="23" width="1440" height="817" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27968526" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27968526" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35131398" sideWeight="0.50572246" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -950,7 +954,8 @@
     <MESSAGE value="update-flaskweb-20180310" />
     <MESSAGE value="update-flaskweb-20180311" />
     <MESSAGE value="update-flaskweb-20180314" />
-    <option name="LAST_COMMIT_MESSAGE" value="update-flaskweb-20180314" />
+    <MESSAGE value="update-flaskweb-20180315" />
+    <option name="LAST_COMMIT_MESSAGE" value="update-flaskweb-20180315" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -959,13 +964,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/front/front_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/front/front_signbase.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -1188,6 +1186,16 @@
           <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
           <folding>
             <element signature="e#15#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
