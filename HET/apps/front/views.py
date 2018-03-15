@@ -232,8 +232,9 @@ def excute():
         find_obj = UploadFileForm.query.filter_by(author_id=g.front_user.id).first()
         case_path = find_obj.file_url
         case_name = find_obj.file_name
-
-        main()
+        print(case_path)
+        print(case_name)
+        main(case_name)
         return restful.success()
 
 

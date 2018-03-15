@@ -24,7 +24,6 @@ def _search(result, tag, subtag=None):
                 else:
                     tagvalue = json.loads(rtext).get("data").get(tag)
             else:
-                print('dsafdas')
                 pass
         else:
             # mylogger.error(u"http请求失败:{code}".format(code=httpcode))

@@ -1,5 +1,4 @@
 import os
-import subprocess
 from functools import partial
 
 from utils.het_fiddler.util._myunzip import unzip
@@ -14,14 +13,15 @@ get_path = partial(os.path.join, here)
 
 
 run_case = os.path.join(os.getcwd(),'utils/het_fiddler/addcase.py')
-SRCDIR = os.path.join(os.getcwd(),'utils/het_fiddler/datas/saz')
+
 DSTDIR = os.path.join(os.getcwd(),'utils/het_fiddler/datas/dst')
 RESULTDIR = os.path.join(os.getcwd(),'utils/het_fiddler/datas/result/result.txt')
 REPTYPE = "*_c.txt"
 RSPTYPE = "*_s.txt"
 
-def main():
-    unzip(SRCDIR, DSTDIR)
+def main(case_name):
+    SRCDIR = os.path.join(os.getcwd(), 'utils/het_fiddler/datas/saz')
+    unzip(SRCDIR, DSTDIR,case_name)
     req = find(DSTDIR, REPTYPE)
     rsp = find(DSTDIR, RSPTYPE)
     read(req, rsp, RESULTDIR)
