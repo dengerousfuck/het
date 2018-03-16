@@ -37,8 +37,8 @@ def addcase(appid, except_code, url_type, http_type, host, url_name, url_remark,
     return result.text
 
 
-def addcase_main():
-    RESULTDIR = os.path.join(os.getcwd(), 'utils/het_fiddler/datas/result/result.txt')
+def addcase_main(case_name):
+    RESULTDIR = os.path.join(os.getcwd(), 'utils/het_fiddler/datas/result/%s.txt'%case_name)
     with open(RESULTDIR, "r", encoding='UTF-8') as f:
         url = {}
         for eachline in f:
