@@ -45,8 +45,10 @@ def addcase_main(case_name):
             (casename, method, version, protocol, host, path,
              forms, isurl, isparams, code, message, rspbody) = eachline.strip().split("                    ")
             for k, v in json.loads(rspbody).items():
+                print(json.loads(rspbody).items())
                 if isinstance(v, dict):
                     try:
+                        print(v)
                         except_code = v.popitem()[0]
                     except:
                         except_code = '"code":0'

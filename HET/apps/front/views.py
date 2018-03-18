@@ -101,6 +101,7 @@ def index():
 
 
 @bp.route('/p/<post_id>/')
+@login_required
 def post_detail(post_id):
     post = PostModel.query.get(post_id)
     counts = ReadcountModel.query.filter(ReadcountModel.post_id == post_id).first()
