@@ -7,9 +7,8 @@ from flask import (Blueprint,
                     g,
                     abort,
                     send_from_directory
-
                    )
-from .forms import SignupForm,SigninForm,AddPostForm,AddCommentForm,AddProjectForm,ForgotpwdForm,UpdatepwdForm
+from .forms import SignupForm,SigninForm,AddPostForm,AddCommentForm,AddProjectForm,ForgotpwdForm,UpdatepwdForm,UploadForm
 from utils import restful,safeutils,hetcache
 from .models import FrontUser,InputInterface,UploadFileForm
 from ..models import BannerModel,BoardModel,PostModel,CommentModel,HighlightPostModel,ReadcountModel
@@ -22,6 +21,7 @@ import re
 import os
 from werkzeug.utils import secure_filename
 from utils.het_fiddler.main import main
+from werkzeug.datastructures import CombinedMultiDict
 
 
 
@@ -207,23 +207,27 @@ def upload():
     if request.method == 'GET':
         return render_template('front/front_upload.html')
     else:
-        desc = request.form.get('desc','这个人很懒，什么都没有留下！')
-        avator = request.files.get('avator')
-        filename = secure_filename(avator.filename)
-        timestamp = str(int(time.time())*1000)[:13]
-        filename = timestamp + '_' + filename
-        UPLOAD_PATH = os.path.join(os.getcwd(), 'utils/het_fiddler/datas/saz/')
-        avator.save(os.path.join(UPLOAD_PATH, filename))
-        exists_file = UploadFileForm.query.filter_by(author_id=g.front_user.id).first()
-        if exists_file:
-            exists_file.file_url=UPLOAD_PATH
-            exists_file.file_name = filename
+        form = UploadForm(CombinedMultiDict([request.form,request.files]))
+        if form.validate():
+            desc = request.form.get('desc','这个人很懒，什么都没有留下！')
+            avator = request.files.get('avator')
+            filename = secure_filename(avator.filename)
+            timestamp = str(int(time.time())*1000)[:13]
+            filename = timestamp + '_' + filename
+            UPLOAD_PATH = os.path.join(os.getcwd(), 'utils/het_fiddler/datas/saz/')
+            avator.save(os.path.join(UPLOAD_PATH, filename))
+            exists_file = UploadFileForm.query.filter_by(author_id=g.front_user.id).first()
+            if exists_file:
+                exists_file.file_url=UPLOAD_PATH
+                exists_file.file_name = filename
+            else:
+                _upload = UploadFileForm(desc=desc,file_url=UPLOAD_PATH,file_name=filename)
+                _upload.author = g.front_user
+                db.session.add(_upload)
+            db.session.commit()
+            return restful.success(message='文件上传成功！')
         else:
-            _upload = UploadFileForm(desc=desc,file_url=UPLOAD_PATH,file_name=filename)
-            _upload.author = g.front_user
-            db.session.add(_upload)
-        db.session.commit()
-        return restful.success(message='文件上传成功！')
+            return restful.params_error(message=form.get_error())
 
 @bp.route('/excute/',methods=['GET','POST'])
 @login_required

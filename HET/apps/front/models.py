@@ -74,7 +74,8 @@ class UploadFileForm(db.Model):
     desc = db.Column(db.String(100))
     file_url = db.Column(db.String(500))
     file_name = db.Column(db.String(100),nullable=False)
-
+    create_time = db.Column(db.DateTime,default=datetime.now())
+    update_time = db.Column(db.DateTime,default=datetime.now)
     author_id = db.Column(db.String(100),db.ForeignKey('front_user.id'),nullable=False)
 
     author = db.relationship('FrontUser',backref='uploadfiles')

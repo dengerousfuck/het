@@ -1,7 +1,8 @@
-from wtforms import StringField,IntegerField
+from wtforms import StringField,IntegerField,FileField
 from ..forms import BaseForm
 from wtforms.validators import Regexp,EqualTo,ValidationError,InputRequired
 from utils import hetcache
+from flask_wtf.file import FileRequired,FileAllowed
 
 
 class SignupForm(BaseForm):
@@ -63,6 +64,10 @@ class AddCommentForm(BaseForm):
     content = StringField(validators=[InputRequired(message='请输入评论内容！')])
     post_id = IntegerField(validators=[InputRequired(message='请输入帖子id')])
 
+
+class UploadForm(BaseForm):
+    avator = FileField(validators=[FileRequired(),FileAllowed(['jpg','png','saz','gif'])])
+    desc = StringField(validators=[InputRequired()])
 
 class AddProjectForm(BaseForm):
     app_id = StringField(validators=[InputRequired(message='请输入项目的appid')])
