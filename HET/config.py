@@ -49,7 +49,7 @@ UEDITOR_QINIU_BUCKET_NAME = 'denger'#"hyvideo"
 UEDITOR_QINIU_DOMAIN = 'http://p4li0s0qf.bkt.clouddn.com/'#"http://7xqenu.com1.z0.glb.clouddn.com/"
 
 # 每一页的帖子数量
-PER_PAGE = 4
+PER_PAGE = 20
 
 # celery相关的配置
 CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"

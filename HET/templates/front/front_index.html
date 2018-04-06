@@ -61,9 +61,9 @@ HET接口测试
                 {% endif %}
 
                 {% if current_sort == 2 %}
-                    <li class="active"><a href="{{ url_for('front.index',st=2,bd=current_board) }}">精华文章</a></li>
+                    <li class="active"><a href="{{ url_for('front.index',st=2,bd=current_board) }}">版主推荐</a></li>
                 {% else %}
-                    <li ><a href="{{ url_for('front.index',st=2,bd=current_board) }}">精华文章</a></li>
+                    <li ><a href="{{ url_for('front.index',st=2,bd=current_board) }}">版主推荐</a></li>
                 {% endif %}
 
                 {% if current_sort == 3 %}
